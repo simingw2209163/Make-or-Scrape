@@ -6,12 +6,6 @@ const jsonPath = "./json/";
 const name = "";
 
 
-/*
-This web-scraping example is set up for working with wikipedia.If you want to adapt this
-to scrape another site you should go and inspect the site in the browser first, then adapt this. 
-*/
-
-//returns one large string of all text
 function getParagraphText(soupTag){
     let paragraphs = soupTag.findAll('p');
     let text = '';
@@ -22,13 +16,12 @@ function getParagraphText(soupTag){
     console.log(p);
     text += p;
     }
-        // text += paragraphs[i].getText();
+
     }
     console.log(soupTag);
     return text;
 }
 
-//pass in Plain Old Javascript Object that's formatted as JSON
 function writeJSON(data){
     try {
         let path = jsonPath+name+".json";
@@ -39,7 +32,6 @@ function writeJSON(data){
     }
 }
 
-//create soup  
 function createSoup(document){
     
     let soup = new JSSoup(document);
@@ -50,7 +42,7 @@ function createSoup(document){
         
     }; 
 
-    let main = soup.find('main');//only get the content from the main body of the page
+    let main = soup.find('main');
 
     data.content = {
         "text": getParagraphText(main)
@@ -65,7 +57,6 @@ function createSoup(document){
 
 }
 
-//Request the url
 https.get(url, (res) => {
     console.log('statusCode:', res.statusCode);
     console.log('headers:', res.headers);
@@ -92,7 +83,7 @@ function getAllExternalLinks(soup){
    
     for(let i = 0; i < aTags.length; i++){
         let attrs = aTags[i].attrs;// get a tag attributes  含有条件的element
-        // if there is an href attribute in attires let's get it
+
         if('href' in attrs){
             let hrefValue = attrs.href;
         }
