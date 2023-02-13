@@ -13,7 +13,7 @@ function getParagraphText(soupTag){
         let p = paragraphs[i].getText().toLowerCase();
 
     if(p.indexOf("panda") != -1){
-    console.log(p);
+    console.log(p);a
     text += p;
     }
 
